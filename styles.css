@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #5D4777;  /* Softer indigo */
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+.model-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.timer {
+    font-size: 6rem;
+    font-weight: bold;
+    margin: 2rem 0;
+}
+
+.controls button {
+    font-size: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.controls button:hover {
+    background-color: #45a049;
+}
+
+.settings button {
+    background-color: #808080;
+}
+
+.settings button.active {
+    background-color: #4CAF50;
+} 
