@@ -24,8 +24,8 @@ body {
 }
 
 .model-image {
-    max-width: 100%;
-    height: auto;
+    width: 75%;  /* Reduced from 100% (or original size) by 25% */
+    height: auto; /* Maintains aspect ratio */
     border-radius: 5px;
     margin-bottom: 0.5rem;
 }
