@@ -43,15 +43,26 @@ body {
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.controls button:hover {
-    background-color: #45a049;
+#startButton {
+    background-color: #7BC68C;  /* Darker mint green */
+}
+
+#startButton:hover {
+    background-color: #98D8AA;  /* Soft mint green */
+}
+
+#pauseButton {
+    background-color: #FF8596;  /* Darker pink/coral */
+}
+
+#pauseButton:hover {
+    background-color: #FF9EAA;  /* Soft pink/coral */
 }
 
 .settings button {
@@ -59,5 +70,5 @@ body {
 }
 
 .settings button.active {
-    background-color: #4CAF50;
+    background-color: #7BC68C;  /* Match the start button color */
 } 

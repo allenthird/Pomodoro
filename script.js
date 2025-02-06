@@ -16,9 +16,8 @@ class PomodoroTimer {
     initializeElements() {
         this.minutesDisplay = document.getElementById('minutes');
         this.secondsDisplay = document.getElementById('seconds');
-        this.startButton = document.getElementById('start');
-        this.pauseButton = document.getElementById('pause');
-        this.resetButton = document.getElementById('reset');
+        this.startButton = document.getElementById('startButton');
+        this.pauseButton = document.getElementById('pauseButton');
         this.pomodoroButton = document.getElementById('pomodoro');
         this.shortBreakButton = document.getElementById('shortBreak');
         this.longBreakButton = document.getElementById('longBreak');
@@ -26,8 +25,7 @@ class PomodoroTimer {
 
     setupEventListeners() {
         this.startButton.addEventListener('click', () => this.start());
-        this.pauseButton.addEventListener('click', () => this.pause());
-        this.resetButton.addEventListener('click', () => this.reset());
+        this.pauseButton.addEventListener('click', () => this.handlePauseReset());
         this.pomodoroButton.addEventListener('click', () => this.setTimer(this.pomodoroTime));
         this.shortBreakButton.addEventListener('click', () => this.setTimer(this.shortBreakTime));
         this.longBreakButton.addEventListener('click', () => this.setTimer(this.longBreakTime));
@@ -47,15 +45,27 @@ class PomodoroTimer {
         document.title = `${displayMinutes}:${displaySeconds} - Pomodoro Timer`;
     }
 
+    handlePauseReset() {
+        if (this.isRunning) {
+            this.pause();
+            this.pauseButton.textContent = 'Reset';
+        } else {
+            this.reset();
+            this.pauseButton.textContent = 'Pause';
+        }
+    }
+
     start() {
         if (!this.isRunning) {
             this.isRunning = true;
+            this.pauseButton.textContent = 'Pause';  // Ensure button shows 'Pause' when starting
             this.timerId = setInterval(() => {
                 this.timeLeft--;
                 this.updateDisplay();
                 
                 if (this.timeLeft === 0) {
                     this.pause();
+                    this.pauseButton.textContent = 'Reset';
                     alert('Time is up!');
                 }
             }, 1000);
@@ -65,12 +75,14 @@ class PomodoroTimer {
     pause() {
         this.isRunning = false;
         clearInterval(this.timerId);
+        this.pauseButton.textContent = 'Reset';
     }
 
     reset() {
         this.pause();
         this.timeLeft = this.pomodoroTime;
         this.updateDisplay();
+        this.pauseButton.textContent = 'Pause';
     }
 
     setTimer(time) {
