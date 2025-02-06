@@ -36,25 +36,6 @@ body {
     margin: 2rem 0;
 }
 
-/* Add these media queries */
-@media (max-width: 768px) {
-    .timer {
-        font-size: 4rem;
-        margin: 1.5rem 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .timer {
-        font-size: 3.5rem;
-        margin: 1rem 0;
-    }
-    
-    .container {
-        padding: 1.5rem;
-    }
-}
-
 .controls button {
     font-size: 1rem;
     margin: 0.5rem;
