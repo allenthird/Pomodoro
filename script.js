@@ -58,7 +58,7 @@ class PomodoroTimer {
     start() {
         if (!this.isRunning) {
             this.isRunning = true;
-            this.pauseButton.textContent = 'Pause';  // Ensure button shows 'Pause' when starting
+            this.pauseButton.textContent = 'Pause';
             this.timerId = setInterval(() => {
                 this.timeLeft--;
                 this.updateDisplay();
@@ -66,7 +66,16 @@ class PomodoroTimer {
                 if (this.timeLeft === 0) {
                     this.pause();
                     this.pauseButton.textContent = 'Reset';
-                    alert('Time is up!');
+                    
+                    // Flash the beach image
+                    const modelImage = document.querySelector('.model-image');
+                    const originalSrc = modelImage.src;
+                    modelImage.src = 'images/beach.jpg';
+                    
+                    setTimeout(() => {
+                        modelImage.src = originalSrc;
+                        this.reset();
+                    }, 200);
                 }
             }, 1000);
         }
@@ -104,4 +113,28 @@ class PomodoroTimer {
 // Initialize the timer when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     const timer = new PomodoroTimer();
-}); 
+});
+
+function updateTimer() {
+    if (timeLeft > 0) {
+        // ... existing timer update code ...
+    } else {
+        // Timer is up
+        const modelImage = document.querySelector('.model-image');
+        const originalSrc = modelImage.src;  // Store the original image source
+        
+        // Change to beach image
+        modelImage.src = 'images/beach.jpg';
+        
+        // Reset back to original image after 200ms
+        setTimeout(() => {
+            modelImage.src = originalSrc;
+            resetTimer();
+            if (isRunning) {
+                startTimer();  // Restart the timer if it was running
+            }
+        }, 200);
+        
+        isRunning = false;
+    }
+} 
