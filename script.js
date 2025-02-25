@@ -3,12 +3,6 @@ class PomodoroTimer {
         this.timeLeft = 25 * 60; // 25 minutes in seconds
         this.timerId = null;
         this.isRunning = false;
-
-        // Timer settings
-        this.pomodoroTime = 25 * 60;
-        this.shortBreakTime = 5 * 60;
-        this.longBreakTime = 15 * 60;
-
         this.initializeElements();
         this.setupEventListeners();
     }
@@ -18,17 +12,11 @@ class PomodoroTimer {
         this.secondsDisplay = document.getElementById('seconds');
         this.startButton = document.getElementById('startButton');
         this.pauseButton = document.getElementById('pauseButton');
-        this.pomodoroButton = document.getElementById('pomodoro');
-        this.shortBreakButton = document.getElementById('shortBreak');
-        this.longBreakButton = document.getElementById('longBreak');
     }
 
     setupEventListeners() {
         this.startButton.addEventListener('click', () => this.start());
         this.pauseButton.addEventListener('click', () => this.handlePauseReset());
-        this.pomodoroButton.addEventListener('click', () => this.setTimer(this.pomodoroTime));
-        this.shortBreakButton.addEventListener('click', () => this.setTimer(this.shortBreakTime));
-        this.longBreakButton.addEventListener('click', () => this.setTimer(this.longBreakTime));
     }
 
     updateDisplay() {
@@ -89,24 +77,9 @@ class PomodoroTimer {
 
     reset() {
         this.pause();
-        this.timeLeft = this.pomodoroTime;
+        this.timeLeft = 25 * 60; // Reset to 25 minutes
         this.updateDisplay();
         this.pauseButton.textContent = 'Pause';
-    }
-
-    setTimer(time) {
-        this.pause();
-        this.timeLeft = time;
-        this.updateDisplay();
-        
-        // Update active button
-        [this.pomodoroButton, this.shortBreakButton, this.longBreakButton].forEach(button => {
-            button.classList.remove('active');
-        });
-        
-        if (time === this.pomodoroTime) this.pomodoroButton.classList.add('active');
-        else if (time === this.shortBreakTime) this.shortBreakButton.classList.add('active');
-        else if (time === this.longBreakTime) this.longBreakButton.classList.add('active');
     }
 }
 
@@ -114,27 +87,3 @@ class PomodoroTimer {
 document.addEventListener('DOMContentLoaded', () => {
     const timer = new PomodoroTimer();
 });
-
-function updateTimer() {
-    if (timeLeft > 0) {
-        // ... existing timer update code ...
-    } else {
-        // Timer is up
-        const modelImage = document.querySelector('.model-image');
-        const originalSrc = modelImage.src;  // Store the original image source
-        
-        // Change to beach image
-        modelImage.src = 'images/beach.jpg';
-        
-        // Reset back to original image after 200ms
-        setTimeout(() => {
-            modelImage.src = originalSrc;
-            resetTimer();
-            if (isRunning) {
-                startTimer();  // Restart the timer if it was running
-            }
-        }, 200);
-        
-        isRunning = false;
-    }
-} 

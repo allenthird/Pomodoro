@@ -70,14 +70,6 @@ h1 {
     background-color: #FF9EAA;  /* Soft pink/coral */
 }
 
-.settings button {
-    background-color: #808080;
-}
-
-.settings button.active {
-    background-color: #7BC68C;  /* Match the start button color */
-}
-
 @media (max-width: 480px) {
     .container {
         margin: 0.5rem auto;
